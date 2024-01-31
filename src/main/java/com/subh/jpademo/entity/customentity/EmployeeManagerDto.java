@@ -1,4 +1,4 @@
-package com.subh.jpademo.entity;
+package com.subh.jpademo.entity.customentity;
 
 
 import lombok.*;
