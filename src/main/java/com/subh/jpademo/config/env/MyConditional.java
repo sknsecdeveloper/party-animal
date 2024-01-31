@@ -8,6 +8,6 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
 public class MyConditional implements Condition {
     @Override
     public boolean matches(ConditionContext context, AnnotatedTypeMetadata metadata) {
-        return false;
+        return true;
     }
 }

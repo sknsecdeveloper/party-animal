@@ -7,12 +7,16 @@ import com.subh.jpademo.entity.customentity.EmployeeBook;
 import com.subh.jpademo.entity.customentity.EmployeeManagerDto;
 import com.subh.jpademo.repository.EmployeeRepo;
 import com.subh.jpademo.service.EmployeeService;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +29,7 @@ import java.util.Optional;
 @Controller
 @ResponseBody
 @RequestMapping("/api")
+@ApiResponse
 public class EmployeeController {
 
     Logger logger = LoggerFactory.getLogger(EmployeeController.class);
@@ -66,10 +71,11 @@ public class EmployeeController {
     }
 
     @PostMapping("/employee")
-    public Employee saveEmployee(@RequestBody Employee employee) {
+
+    public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee) {
         Employee emp = employeeService.saveEmployee(employee);
         emp.setName("modi");
-        return emp;
+        return new ResponseEntity<>(emp, HttpStatus.CREATED);
     }
 
     @GetMapping("/employees")
