@@ -6,6 +6,7 @@ import com.subh.jpademo.entity.Employee;
 import com.subh.jpademo.entity.customentity.EmployeeBook;
 import com.subh.jpademo.entity.customentity.EmployeeManagerDto;
 import com.subh.jpademo.repository.EmployeeRepo;
+import com.subh.jpademo.repository.EmployeeRepoPage;
 import com.subh.jpademo.service.EmployeeService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.persistence.EntityManager;
@@ -14,6 +15,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,17 +38,32 @@ public class EmployeeController {
 
     Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
+    //@Autowired
+    private EmployeeRepo employeeRepo;
+
     @Autowired
     @Lazy
     private EmployeeService employeeService;
 
-    @Autowired
-    private EmployeeRepo employeeRepo;
+
     @PersistenceContext
     private EntityManager entityManager;
 
     @Autowired
     private RestTemplate restTemplate;
+
+    /*@Autowired*/
+    private EmployeeRepoPage employeeRepoPage;
+
+
+    @GetMapping("/page/{pageNumber}/{pageSize}")
+    public List<Employee> getEmployeeListWithPagination(@PathVariable int pageNumber, @PathVariable int pageSize){
+
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+        return employeeRepoPage.findAll(pageable).stream().toList();
+        //return employeeRepoPage.findAll(pageable);
+
+    }
 
     @DeleteMapping
     public void deleteEmployeBySalaryNull(){

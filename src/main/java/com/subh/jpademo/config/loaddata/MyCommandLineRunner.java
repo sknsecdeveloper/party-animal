@@ -31,7 +31,7 @@ public class MyCommandLineRunner implements CommandLineRunner {
         return new RestTemplate();
     }
 
-    @Autowired
+    //@Autowired
     private EmployeeRepo employeeRepo;
 
     @Autowired
@@ -40,7 +40,7 @@ public class MyCommandLineRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        System.out.println("Environment =============== "+environment.getActiveProfiles().length);
+        /*System.out.println("Environment =============== "+environment.getActiveProfiles().length);
 
         Random random = new Random();
         String[] departments = {"IT", "CSE", "ECE"};
@@ -69,7 +69,7 @@ public class MyCommandLineRunner implements CommandLineRunner {
         long empCount = employeeRepo.count();
         if(empCount<0 || empCount<150 ) {
             employeeRepo.saveAll(employees);
-        }
+        }*/
 
     }
 }

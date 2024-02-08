@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api")
 public class OrderController {
 
-    @Autowired
+    //@Autowired
     private OrderRepo orderRepo;
 
     @PostMapping("/order")

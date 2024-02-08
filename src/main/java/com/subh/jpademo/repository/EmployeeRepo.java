@@ -12,8 +12,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Component
-//@Repository
+//@Component
+@Repository
 @Transactional
 public interface EmployeeRepo extends JpaRepository<Employee, Integer> {
 

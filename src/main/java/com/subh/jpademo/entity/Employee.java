@@ -26,6 +26,7 @@ import java.util.List;
         columns = {@ColumnResult(name = "employeeId"), @ColumnResult(name = "employeeName"), @ColumnResult(name = "managerName")})
 )
 @Entity
+@Table(schema = "chitti")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

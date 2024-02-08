@@ -2,30 +2,21 @@ package com.subh.jpademo.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-
 @Entity
-public class Book {
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(schema = "arnab")
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int bookId;
+    private int id;
+
     private String name;
-
-
-
-
-
-   /* @ManyToOne
-    @JoinColumn(name = "id", nullable = false)
-    private Employee employee;*/
-
+    private int qty;
+    private double price;
 }
