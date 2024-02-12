@@ -1,7 +1,5 @@
 package com.subh.jpademo.config.loaddata;
 
-import com.subh.jpademo.entity.Book;
-import com.subh.jpademo.entity.Employee;
 import com.subh.jpademo.repository.EmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -11,14 +9,6 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 @Component
 @Configuration

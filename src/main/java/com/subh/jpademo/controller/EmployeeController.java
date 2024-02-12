@@ -1,8 +1,7 @@
 package com.subh.jpademo.controller;
 
 import com.subh.jpademo.controller.handleException.GeneralException;
-import com.subh.jpademo.entity.Book;
-import com.subh.jpademo.entity.Employee;
+import com.subh.jpademo.entity.employee.Employee;
 import com.subh.jpademo.entity.customentity.EmployeeBook;
 import com.subh.jpademo.entity.customentity.EmployeeManagerDto;
 import com.subh.jpademo.repository.EmployeeRepo;
@@ -15,10 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -54,6 +51,11 @@ public class EmployeeController {
 
     /*@Autowired*/
     private EmployeeRepoPage employeeRepoPage;
+
+    @GetMapping("/hello")
+    public String getMsg(){
+        return "Hello";
+    }
 
 
     @GetMapping("/page/{pageNumber}/{pageSize}")

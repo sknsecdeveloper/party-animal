@@ -1,11 +1,10 @@
 package com.subh.jpademo.service;
 
-import com.subh.jpademo.entity.Employee;
+import com.subh.jpademo.entity.employee.Employee;
 import com.subh.jpademo.repository.EmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,5 +1,6 @@
-package com.subh.jpademo.entity;
+package com.subh.jpademo.entity.employee;
 
+import com.subh.jpademo.entity.Book;
 import com.subh.jpademo.entity.customentity.EmployeeManagerDto;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,13 +1,12 @@
 package com.subh.jpademo.repository;
 
-import com.subh.jpademo.entity.Employee;
+import com.subh.jpademo.entity.employee.Employee;
 import com.subh.jpademo.entity.customentity.EmployeeBook;
 import com.subh.jpademo.entity.customentity.EmployeeManagerDto;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
