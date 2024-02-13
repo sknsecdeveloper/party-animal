@@ -9,7 +9,7 @@ phases:
       - echo setting repository URI...
       - REPOSITORY_URI=339712697220.dkr.ecr.eu-north-1.amazonaws.com/jpademo
       - echo setting image tag ...
-      - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" 'print $2')
+      - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
 
   build:
     commands:
