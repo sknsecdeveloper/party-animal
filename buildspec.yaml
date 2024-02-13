@@ -1,0 +1,40 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - echo logging into AWS ECR started on 'date'
+      - aws --version
+      - echo logging into amazon ECR...
+      - aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 339712697220.dkr.ecr.eu-north-1.amazonaws.com
+      - echo setting repository URI...
+      - REPOSITORY_URI=339712697220.dkr.ecr.eu-north-1.amazonaws.com/jpademo
+      - echo setting image tag ...
+      - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" 'print $2')
+
+  build:
+    commands:
+      - echo building and tagging started image on 'date'
+      - echo running mvn clean install
+      - mvn clean install
+      - echo building docker image
+      - docker build -t $REPOSITORY_URI:latest .
+      - echo tagging the Docker image
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+
+  post_build:
+    commands:
+      - echo pushing docker image to amazon ECR started
+      - echo pushing to repository...
+      - docker push $REPOSITORY_URI:latest
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - echo setting container name
+      - DOCKER_CONTAINER_NAME=jpademo
+      - echo writing image definitions file..
+      - printf '[{"name":"%s","imageUri","%s"}]' $DOCKER_CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - echo $DOCKER_CONTAINER_NAME
+      - echo printing imagedefinitions.json
+      - cat imagedefinitions.json
+
+artifacts:
+  files:
+    - imagedefinitions.json

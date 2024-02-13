@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -91,15 +92,14 @@ public class EmployeeController {
         return employee;
     }
 
-    @PostMapping("/employee")
+    @PostMapping(value = "/employee", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE} )
 
     public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee) {
         Employee emp = employeeService.saveEmployee(employee);
-        emp.setName("modi");
         return new ResponseEntity<>(emp, HttpStatus.CREATED);
     }
 
-    @GetMapping("/employees")
+    @GetMapping(value = "/employees", produces = {/*MediaType.APPLICATION_JSON_VALUE,*/ MediaType.APPLICATION_XML_VALUE})
     public List<Employee> getAllEmployee(){
         return employeeService.getAllEmployee();
     }
